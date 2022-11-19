@@ -386,6 +386,7 @@ public class StoreValidAndInvalidCustomerInformationService {
            // Connection connection=dataBaseConnection.createConnection();
             Statement statement=this.connection.createStatement();
             String insertQuery="";
+            
             if(status==1){
                 String checkDuplicateValueQuery="select * from customer_processing where email='"+email+"' and phone_no='"+phoneNumber+"'";
                 if(!statement.executeQuery(checkDuplicateValueQuery).next()){
