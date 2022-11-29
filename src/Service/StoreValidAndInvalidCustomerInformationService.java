@@ -1155,7 +1155,7 @@ public class StoreValidAndInvalidCustomerInformationService {
 
 
     }
-    Integer getActualIndexToExecuteBatch(Integer customerSize,Integer value){
+    public Integer getActualIndexToExecuteBatch(Integer customerSize,Integer value){
         Integer index=customerSize-value;
         if(index>=0){
             index=value-1;

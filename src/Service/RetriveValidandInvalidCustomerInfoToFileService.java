@@ -3,9 +3,7 @@ package Service;
 import Model.CustomerInfo;
 
 import java.io.*;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 
 public class RetriveValidandInvalidCustomerInfoToFileService {
@@ -36,300 +34,11 @@ public class RetriveValidandInvalidCustomerInfoToFileService {
     public RetriveValidandInvalidCustomerInfoToFileService (){
 
    }
-   public  RetriveValidandInvalidCustomerInfoToFileService(List<CustomerInfo> validCustomers, List <CustomerInfo> inValidCustomers){
+    public  RetriveValidandInvalidCustomerInfoToFileService(List<CustomerInfo> validCustomers, List <CustomerInfo> inValidCustomers){
        this.validCustomers=validCustomers;
        this.inValidCustomers=inValidCustomers;
 
    }
-    public void startServiceForValidCustomer(){
-        Integer validCustomersSize=this.validCustomers.size();
-        Thread t11=new Thread(new Runnable() {
-            Integer index=getActualIndexToWriteFile(validCustomersSize,100000);
-
-            @Override
-            public void run() {
-                try{
-                    for(int i=0; i<100000 && i<validCustomersSize;i++){
-                        CustomerInfo customer=validCustomers.get(i);
-                        validCustomerPage1=getEachPageData(validCustomerPage1,customer);
-                       // System.out.println(validCustomerPage1.toString());
-                        if(i==index){
-
-                            File file=new File("D:\\validCustomers-page1.CSV");
-                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
-                            writer.write(validCustomerPage1.toString());
-                            writer.close();
-                        }
-
-                    }
-
-                }
-                catch (Exception e){
-                    System.out.println(e);
-                }
-
-            }
-        });
-
-        Thread t12=new Thread(new Runnable() {
-            Integer index=getActualIndexToWriteFile(validCustomersSize,200000);
-            @Override
-            public void run() {
-                try{
-                    for(int j=100000; j<200000 && j<validCustomersSize;j++){
-                        CustomerInfo customer=validCustomers.get(j);
-                        validCustomerPage2=getEachPageData(validCustomerPage2,customer);
-                        if(j==index){
-                            File file=new File("D:\\validCustomers-page2.CSV");
-                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
-                            writer.write(validCustomerPage2.toString());
-                            writer.close();
-                        }
-
-                    }
-
-                }
-                catch (Exception e){
-                    System.out.println(e);
-                }
-
-            }
-        });
-        Thread t13=new Thread(new Runnable() {
-            Integer index=getActualIndexToWriteFile(validCustomersSize,300000);
-            @Override
-            public void run() {
-                try{
-                    for(int k=200000; k<300000 && k<validCustomersSize;k++){
-                        CustomerInfo customer=validCustomers.get(k);
-                        validCustomerPage3=getEachPageData(validCustomerPage3,customer);
-                        if(k==index){
-                            File file=new File("D:\\validCustomers-page3.CSV");
-                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
-                            writer.write(validCustomerPage3.toString());
-                            writer.close();
-                        }
-
-                    }
-
-                }
-                catch (Exception e){
-                    System.out.println(e);
-                }
-
-            }
-        });
-
-        Thread t14=new Thread(new Runnable() {
-            Integer index=getActualIndexToWriteFile(validCustomersSize,400000);
-            @Override
-            public void run() {
-                try{
-                    for(int l=300000; l<400000 && l<validCustomersSize;l++){
-                        CustomerInfo customer=validCustomers.get(l);
-                        validCustomerPage4=getEachPageData(validCustomerPage4,customer);
-                        if(l==index){
-                            File file=new File("D:\\validCustomers-page4.CSV");
-                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
-                            writer.write(validCustomerPage4.toString());
-                            writer.close();
-                        }
-
-                    }
-
-                }
-                catch (Exception e){
-                    System.out.println(e);
-                }
-
-            }
-        });
-
-        Thread t15=new Thread(new Runnable() {
-            Integer index=getActualIndexToWriteFile(validCustomersSize,500000);
-            @Override
-            public void run() {
-                try{
-                    for(int m=400000; m<500000 && m<validCustomersSize;m++){
-                        CustomerInfo customer=validCustomers.get(m);
-                        validCustomerPage5=getEachPageData(validCustomerPage5,customer);
-                        if(m==index){
-                            File file=new File("D:\\validCustomers-page5.CSV");
-                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
-                            writer.write(validCustomerPage5.toString());
-                            writer.close();
-                        }
-
-                    }
-
-                }
-                catch (Exception e){
-                    System.out.println(e);
-                }
-
-            }
-        });
-
-        Thread t16=new Thread(new Runnable() {
-            Integer index=getActualIndexToWriteFile(validCustomersSize,600000);
-            @Override
-            public void run() {
-                try{
-                    for(int n=500000; n<600000 && n<validCustomersSize;n++){
-                        CustomerInfo customer=validCustomers.get(n);
-                        validCustomerPage6=getEachPageData(validCustomerPage6,customer);
-                        if(n==index){
-                            File file=new File("D:\\validCustomers-page6.CSV");
-                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
-                            writer.write(validCustomerPage6.toString());
-                            writer.close();
-                        }
-
-                    }
-
-                }
-                catch (Exception e){
-                    System.out.println(e);
-                }
-
-            }
-        });
-
-        Thread t17=new Thread(new Runnable() {
-            Integer index=getActualIndexToWriteFile(validCustomersSize,700000);
-            @Override
-            public void run() {
-                try{
-                    for(int o=600000; o<700000 && 0<validCustomersSize;o++){
-                        CustomerInfo customer=validCustomers.get(o);
-                        validCustomerPage7=getEachPageData(validCustomerPage7,customer);
-                        if(o==index){
-                            File file=new File("D:\\validCustomers-page7.CSV");
-                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
-                            writer.write(validCustomerPage7.toString());
-                            writer.close();
-                        }
-
-                    }
-
-                }
-                catch (Exception e){
-                    System.out.println(e);
-                }
-
-            }
-        });
-
-        Thread t18=new Thread(new Runnable() {
-            Integer index=getActualIndexToWriteFile(validCustomersSize,800000);
-            @Override
-            public void run() {
-                try{
-                    for(int p=700000; p<800000 && p<validCustomersSize;p++){
-                        CustomerInfo customer=validCustomers.get(p);
-                        validCustomerPage8=getEachPageData(validCustomerPage8,customer);
-                        if(p==index){
-                            File file=new File("D:\\validCustomers-page8.CSV");
-                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
-                            writer.write(validCustomerPage8.toString());
-                            writer.close();
-                        }
-
-                    }
-
-                }
-                catch (Exception e){
-                    System.out.println(e);
-                }
-
-            }
-        });
-
-        Thread t19=new Thread(new Runnable() {
-            Integer index=getActualIndexToWriteFile(validCustomersSize,900000);
-            @Override
-            public void run() {
-                try{
-                    for(int q=800000; q<900000 && q<validCustomersSize;q++){
-                        CustomerInfo customer=validCustomers.get(q);
-                        validCustomerPage9=getEachPageData(validCustomerPage9,customer);
-                        if(q==index){
-                            File file=new File("D:\\validCustomers-page9.CSV");
-                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
-                            writer.write(validCustomerPage9.toString());
-                            writer.close();
-                        }
-
-                    }
-
-                }
-                catch (Exception e){
-                    System.out.println(e);
-                }
-
-            }
-        });
-
-        Thread t20=new Thread(new Runnable() {
-            Integer index=getActualIndexToWriteFile(validCustomersSize,1000000);
-            @Override
-            public void run() {
-                try{
-                    for(int r=900000; r<1000000 && r<validCustomersSize;r++){
-                        CustomerInfo customer=validCustomers.get(r);
-                        validCustomerPage10=getEachPageData(validCustomerPage10,customer);
-                        if(r==index){
-                            File file=new File("D:\\validCustomers-page10.CSV");
-                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
-                            writer.write(validCustomerPage10.toString());
-                            writer.close();
-                        }
-
-                    }
-
-                }
-                catch (Exception e){
-                    System.out.println(e);
-                }
-
-            }
-        });
-
-        if(validCustomersSize<=100000){
-            t11.start();
-        }
-        if(validCustomersSize>=200000){
-            t12.start();
-        }
-        if(validCustomersSize>=300000){
-            t13.start();
-        }
-        if(validCustomersSize>=400000){
-            t14.start();
-        }
-        if(validCustomersSize>=500000){
-            t15.start();
-        }
-        if(validCustomersSize>=600000){
-            t16.start();
-        }
-        if(validCustomersSize>=700000){
-            t17.start();
-        }
-        if(validCustomersSize>=800000){
-            t18.start();
-        }
-        if(validCustomersSize>=900000){
-            t19.start();
-        }
-        if(validCustomersSize>=1000000){
-            t20.start();
-        }
-
-
-
-
-    }
     public void startServiceForInValidCustomer(){
        Integer inValidCustomersSize=this.inValidCustomers.size();
        Thread t1=new Thread(new Runnable() {
@@ -617,6 +326,295 @@ public class RetriveValidandInvalidCustomerInfoToFileService {
 
 
     }
+    public void startServiceForValidCustomer(){
+        Integer validCustomersSize=this.validCustomers.size();
+        Thread t11=new Thread(new Runnable() {
+            Integer index=getActualIndexToWriteFile(validCustomersSize,100000);
+
+            @Override
+            public void run() {
+                try{
+                    for(int i=0; i<100000 && i<validCustomersSize;i++){
+                        CustomerInfo customer=validCustomers.get(i);
+                        validCustomerPage1=getEachPageData(validCustomerPage1,customer);
+                        // System.out.println(validCustomerPage1.toString());
+                        if(i==index){
+
+                            File file=new File("D:\\validCustomers-page1.CSV");
+                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
+                            writer.write(validCustomerPage1.toString());
+                            writer.close();
+                        }
+
+                    }
+
+                }
+                catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+
+        Thread t12=new Thread(new Runnable() {
+            Integer index=getActualIndexToWriteFile(validCustomersSize,200000);
+            @Override
+            public void run() {
+                try{
+                    for(int j=100000; j<200000 && j<validCustomersSize;j++){
+                        CustomerInfo customer=validCustomers.get(j);
+                        validCustomerPage2=getEachPageData(validCustomerPage2,customer);
+                        if(j==index){
+                            File file=new File("D:\\validCustomers-page2.CSV");
+                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
+                            writer.write(validCustomerPage2.toString());
+                            writer.close();
+                        }
+
+                    }
+
+                }
+                catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+        Thread t13=new Thread(new Runnable() {
+            Integer index=getActualIndexToWriteFile(validCustomersSize,300000);
+            @Override
+            public void run() {
+                try{
+                    for(int k=200000; k<300000 && k<validCustomersSize;k++){
+                        CustomerInfo customer=validCustomers.get(k);
+                        validCustomerPage3=getEachPageData(validCustomerPage3,customer);
+                        if(k==index){
+                            File file=new File("D:\\validCustomers-page3.CSV");
+                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
+                            writer.write(validCustomerPage3.toString());
+                            writer.close();
+                        }
+
+                    }
+
+                }
+                catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+
+        Thread t14=new Thread(new Runnable() {
+            Integer index=getActualIndexToWriteFile(validCustomersSize,400000);
+            @Override
+            public void run() {
+                try{
+                    for(int l=300000; l<400000 && l<validCustomersSize;l++){
+                        CustomerInfo customer=validCustomers.get(l);
+                        validCustomerPage4=getEachPageData(validCustomerPage4,customer);
+                        if(l==index){
+                            File file=new File("D:\\validCustomers-page4.CSV");
+                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
+                            writer.write(validCustomerPage4.toString());
+                            writer.close();
+                        }
+
+                    }
+
+                }
+                catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+
+        Thread t15=new Thread(new Runnable() {
+            Integer index=getActualIndexToWriteFile(validCustomersSize,500000);
+            @Override
+            public void run() {
+                try{
+                    for(int m=400000; m<500000 && m<validCustomersSize;m++){
+                        CustomerInfo customer=validCustomers.get(m);
+                        validCustomerPage5=getEachPageData(validCustomerPage5,customer);
+                        if(m==index){
+                            File file=new File("D:\\validCustomers-page5.CSV");
+                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
+                            writer.write(validCustomerPage5.toString());
+                            writer.close();
+                        }
+
+                    }
+
+                }
+                catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+
+        Thread t16=new Thread(new Runnable() {
+            Integer index=getActualIndexToWriteFile(validCustomersSize,600000);
+            @Override
+            public void run() {
+                try{
+                    for(int n=500000; n<600000 && n<validCustomersSize;n++){
+                        CustomerInfo customer=validCustomers.get(n);
+                        validCustomerPage6=getEachPageData(validCustomerPage6,customer);
+                        if(n==index){
+                            File file=new File("D:\\validCustomers-page6.CSV");
+                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
+                            writer.write(validCustomerPage6.toString());
+                            writer.close();
+                        }
+
+                    }
+
+                }
+                catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+
+        Thread t17=new Thread(new Runnable() {
+            Integer index=getActualIndexToWriteFile(validCustomersSize,700000);
+            @Override
+            public void run() {
+                try{
+                    for(int o=600000; o<700000 && 0<validCustomersSize;o++){
+                        CustomerInfo customer=validCustomers.get(o);
+                        validCustomerPage7=getEachPageData(validCustomerPage7,customer);
+                        if(o==index){
+                            File file=new File("D:\\validCustomers-page7.CSV");
+                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
+                            writer.write(validCustomerPage7.toString());
+                            writer.close();
+                        }
+
+                    }
+
+                }
+                catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+
+        Thread t18=new Thread(new Runnable() {
+            Integer index=getActualIndexToWriteFile(validCustomersSize,800000);
+            @Override
+            public void run() {
+                try{
+                    for(int p=700000; p<800000 && p<validCustomersSize;p++){
+                        CustomerInfo customer=validCustomers.get(p);
+                        validCustomerPage8=getEachPageData(validCustomerPage8,customer);
+                        if(p==index){
+                            File file=new File("D:\\validCustomers-page8.CSV");
+                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
+                            writer.write(validCustomerPage8.toString());
+                            writer.close();
+                        }
+
+                    }
+
+                }
+                catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+
+        Thread t19=new Thread(new Runnable() {
+            Integer index=getActualIndexToWriteFile(validCustomersSize,900000);
+            @Override
+            public void run() {
+                try{
+                    for(int q=800000; q<900000 && q<validCustomersSize;q++){
+                        CustomerInfo customer=validCustomers.get(q);
+                        validCustomerPage9=getEachPageData(validCustomerPage9,customer);
+                        if(q==index){
+                            File file=new File("D:\\validCustomers-page9.CSV");
+                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
+                            writer.write(validCustomerPage9.toString());
+                            writer.close();
+                        }
+
+                    }
+
+                }
+                catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+
+        Thread t20=new Thread(new Runnable() {
+            Integer index=getActualIndexToWriteFile(validCustomersSize,1000000);
+            @Override
+            public void run() {
+                try{
+                    for(int r=900000; r<1000000 && r<validCustomersSize;r++){
+                        CustomerInfo customer=validCustomers.get(r);
+                        validCustomerPage10=getEachPageData(validCustomerPage10,customer);
+                        if(r==index){
+                            File file=new File("D:\\validCustomers-page10.CSV");
+                            Writer writer =new OutputStreamWriter(new FileOutputStream(file));
+                            writer.write(validCustomerPage10.toString());
+                            writer.close();
+                        }
+
+                    }
+
+                }
+                catch (Exception e){
+                    System.out.println(e);
+                }
+
+            }
+        });
+
+        if(validCustomersSize<=100000){
+            t11.start();
+        }
+        if(validCustomersSize>=200000){
+            t12.start();
+        }
+        if(validCustomersSize>=300000){
+            t13.start();
+        }
+        if(validCustomersSize>=400000){
+            t14.start();
+        }
+        if(validCustomersSize>=500000){
+            t15.start();
+        }
+        if(validCustomersSize>=600000){
+            t16.start();
+        }
+        if(validCustomersSize>=700000){
+            t17.start();
+        }
+        if(validCustomersSize>=800000){
+            t18.start();
+        }
+        if(validCustomersSize>=900000){
+            t19.start();
+        }
+        if(validCustomersSize>=1000000){
+            t20.start();
+        }
+
+
+
+
+    }
     public StringBuilder getEachPageData(StringBuilder page,CustomerInfo customer){
        try{
            page.append(customer.getName());
@@ -641,7 +639,7 @@ public class RetriveValidandInvalidCustomerInfoToFileService {
        }
        return page;
    }
-   Integer getActualIndexToWriteFile(Integer customerSize,Integer value){
+    public Integer getActualIndexToWriteFile(Integer customerSize,Integer value){
         Integer index=customerSize-value;
         if(index>=0){
             index=value-1;
